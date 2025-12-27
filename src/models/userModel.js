@@ -10,5 +10,11 @@ class User {
     const [rows] = await db.execute(sql, [email]);
     return rows[0];
   }
+  static async findById(id) {
+    const sql = "SELECT id ,name,email FROM users WHERE id= ?";
+    const [rows] = await db.execute(sql, [id]);
+    return rows[0];
+  }
 }
+
 module.exports = User;

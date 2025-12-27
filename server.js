@@ -3,6 +3,7 @@ const cors = require("cors");
 require("dotenv").config();
 const db = require("./src/config/db");
 const authRoutes = require("./src/routes/authRoutes");
+const companyRoutes = require("./src/routes/companyRoutes");
 
 const app = express();
 app.use(cors());
@@ -11,6 +12,7 @@ app.get("/", (req, res) => {
   res.json({ message: "welcome to job tracker api" });
 });
 app.use("/api/auth", authRoutes);
+app.use("/api/companies", companyRoutes);
 const PORT = process.env.PORT;
 app.listen(PORT, () => {
   console.log(`server is running now on ${PORT}`);
