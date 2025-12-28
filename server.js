@@ -4,6 +4,7 @@ require("dotenv").config();
 const db = require("./src/config/db");
 const authRoutes = require("./src/routes/authRoutes");
 const companyRoutes = require("./src/routes/companyRoutes");
+const applicationRoutes = require("./src/routes/applicationRoutes");
 
 const app = express();
 app.use(cors());
@@ -13,6 +14,9 @@ app.get("/", (req, res) => {
 });
 app.use("/api/auth", authRoutes);
 app.use("/api/companies", companyRoutes);
+
+app.use("/api/applications", applicationRoutes);
+
 const PORT = process.env.PORT;
 app.listen(PORT, () => {
   console.log(`server is running now on ${PORT}`);
