@@ -14,4 +14,14 @@ router.get(
   authMiddleware.protect,
   applicationController.getMyApplications
 );
+router.patch(
+  "/update/:id",
+  authMiddleware.protect,
+  applicationController.updateApplication
+);
+router.delete(
+  "/:id",
+  authMiddleware.protect,
+  applicationController.deleteApplication
+);
 module.exports = router;
