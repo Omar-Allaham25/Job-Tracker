@@ -33,7 +33,11 @@ exports.createApplication = async (req, res) => {
 };
 exports.getMyApplications = async (req, res) => {
   try {
-    const applications = await Application.findByUserId(req.user.id);
+    const userId = req.user.id;
+    const filters = {
+      status: req.query.status,
+    };
+    const applications = await Application.findByUserId(userId, filters);
     res.status(200).json({
       status: "success",
       applications,

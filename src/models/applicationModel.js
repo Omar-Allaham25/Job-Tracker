@@ -16,10 +16,16 @@ class Application {
     ]);
     return result;
   }
-  static async findByUserId(userId) {
-    const sql =
-      "select applications.*,companies.name as company_name,companies.location from  applications join companies on applications.company_id=companies.id where applications.user_id=? order by applications.created_at desc";
-    const [rows] = await db.execute(sql, [userId]);
+  static async findByUserId(userId, filters = {}) {
+    let sql =
+      "select applications.*,companies.name as company_name,companies.location from  applications join companies on applications.company_id=companies.id where applications.user_id=? ";
+    const values = [userId];
+    if (filters.status) {
+      sql += "and applications.status=? ";
+      values.push(filters.status);
+    }
+    sql += "order by applications.created_at desc";
+    const [rows] = await db.execute(sql, values);
     return rows;
   }
   static async update(id, userId, data) {
