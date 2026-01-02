@@ -36,6 +36,7 @@ exports.getMyApplications = async (req, res) => {
     const userId = req.user.id;
     const filters = {
       status: req.query.status,
+      search: req.query.search,
     };
     const applications = await Application.findByUserId(userId, filters);
     res.status(200).json({

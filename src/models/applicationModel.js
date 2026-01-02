@@ -24,6 +24,11 @@ class Application {
       sql += "and applications.status=? ";
       values.push(filters.status);
     }
+    if (filters.search) {
+      sql += " and (applications.job_title like ? or companies.name like ?) ";
+      const searchTerm = `%${filters.search}%`;
+      values.push(searchTerm, searchTerm);
+    }
     sql += "order by applications.created_at desc";
     const [rows] = await db.execute(sql, values);
     return rows;

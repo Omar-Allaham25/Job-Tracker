@@ -1,12 +1,14 @@
 const express = require("express");
 const authMiddleware = require("../middlewares/authMiddleware");
 const applicationController = require("../controllers/applicationController");
+const { validateApplication } = require("../middlewares/validationMiddleware");
 
 const router = express.Router();
 
 router.post(
   "/create",
   authMiddleware.protect,
+  validateApplication,
   applicationController.createApplication
 );
 router.get(
