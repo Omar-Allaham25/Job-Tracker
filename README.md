@@ -2,7 +2,7 @@
 
 A robust RESTful API built with **Node.js**, **Express**, and **MySQL** to help users track their job applications, manage companies, and monitor interview statuses efficiently.
 
-## Features :
+## Features 
 
 - **Authentication:** Secure User Registration & Login (JWT & bcrypt).
 - **Companies Management:** Add and track companies you are applying to.
@@ -20,4 +20,11 @@ A robust RESTful API built with **Node.js**, **Express**, and **MySQL** to help 
 - **Security:** bcryptjs, jsonwebtoken
 - **Validation:** express-validator
 
-## first Backend Project -- by Omar Allahham
+## Getting Started
+
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+### First Backend Project – Omar Allahham
+
