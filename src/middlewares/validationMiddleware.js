@@ -16,6 +16,12 @@ exports.validateRegister = [
   body("password")
     .isLength({ min: 6 })
     .withMessage("Password must be at least 6 characters"),
+  body("confirmPassword").custom((value, { req }) => {
+    if (value !== req.body.password) {
+      throw new Error("The passwords are not the same");
+    }
+    return true;
+  }),
   checkErrors,
 ];
 exports.validateLogin = [
