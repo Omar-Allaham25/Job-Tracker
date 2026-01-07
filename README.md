@@ -91,7 +91,7 @@ http://localhost:5000
 This project includes a **Postman Collection** for testing all available API endpoints.
 
 🔗 **Postman Collection:**
-[Download Postman Collection](postman/Job-Tracker-API.postman_collection.json)
+[Download Postman Collection](postman/jobTracker-API.postman_collection.json)
 
 ---
 
