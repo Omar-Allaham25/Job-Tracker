@@ -62,7 +62,7 @@ src/
  ├─ middleware/
  ├─ config/
  └─ app.js
-
+````
 ---
 
 ## Getting Started
@@ -71,6 +71,7 @@ src/
 2. **Install dependencies**:
    ```bash
    npm install
+   ```
 3. **Environment Variables**:
 PORT=5000
 DB_HOST=localhost
@@ -116,6 +117,7 @@ This project includes a **Postman Collection** for testing all available API end
 
 ```http
 Authorization: Bearer {{token}}
+```
 ---
 
 ##  Learning Outcomes
