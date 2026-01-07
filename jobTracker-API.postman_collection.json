@@ -1,0 +1,337 @@
+{
+	"info": {
+		"_postman_id": "92c8c6c0-edc1-4aa6-98e2-0477876c784b",
+		"name": "jobTracker",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40687348"
+	},
+	"item": [
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"omar ali\",\r\n    \"email\":\"omarlahamtest2@gmail.com\",\r\n    \"password\": \"Omarlahamtest12\",\r\n    \"passswordConfirm\":\"Omarlahamte12\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{jobTrackerURL}}/api/auth/register",
+							"host": [
+								"{{jobTrackerURL}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"omarlahamtest2@gmail.com\",\r\n    \"password\": \"Omarlahamtest12\"\r\n    \r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{jobTrackerURL}}/api/auth/login",
+							"host": [
+								"{{jobTrackerURL}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "companies",
+			"item": [
+				{
+					"name": "addCompany",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJvbWFybGFoYW10ZXN0MkBnbWFpbC5jb20iLCJpYXQiOjE3Njc0NDAyNTcsImV4cCI6MTc2NzQ0Mzg1N30.Ewl7haG42kcsbPn1lOu2m4IY7aBuyrfdFBDqAtRKdJw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Amazon\",\r\n    \"location\":\"cairo\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{jobTrackerURL}}/api/companies/add",
+							"host": [
+								"{{jobTrackerURL}}"
+							],
+							"path": [
+								"api",
+								"companies",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get allCompany",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJvbWFybGFoYW10ZXN0MkBnbWFpbC5jb20iLCJpYXQiOjE3NjY5NDQ0NzAsImV4cCI6MTc2Njk0ODA3MH0.OLmum2MHo8vwLolTQ0LEh5NGrqpsOCqmSCSO08om6e4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{jobTrackerURL}}/api/companies/",
+							"host": [
+								"{{jobTrackerURL}}"
+							],
+							"path": [
+								"api",
+								"companies",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "applications",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJvbWFybGFoYW10ZXN0MkBnbWFpbC5jb20iLCJpYXQiOjE3NjcyNjYzNDcsImV4cCI6MTc2NzI2OTk0N30.HixLpgkE-B6G_C0ddLpaU_bVYQqU8H-VrLpSAGEKcS0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"job_title\": \"Backend Developer\",\r\n    \"status\": \"Applied\",\r\n    \"company_id\": 1, \r\n    \"notes\": \"Sent CV via LinkedIn\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{jobTrackerURL}}/api/applications/create",
+							"host": [
+								"{{jobTrackerURL}}"
+							],
+							"path": [
+								"api",
+								"applications",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getApplications",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJvbWFybGFoYW10ZXN0MkBnbWFpbC5jb20iLCJpYXQiOjE3NjczNTI4NDUsImV4cCI6MTc2NzM1NjQ0NX0.q3S3RZ7-oZK5MtRRFzwGnuT02Uye_GGZdB9YIC-TesU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{jobTrackerURL}}}/api/applications?status=Applied&search=back",
+							"host": [
+								"{{jobTrackerURL}}}"
+							],
+							"path": [
+								"api",
+								"applications"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "Applied"
+								},
+								{
+									"key": "search",
+									"value": "back"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateApplication",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJvbWFybGFoYW10ZXN0MkBnbWFpbC5jb20iLCJpYXQiOjE3NjcyNjYzNDcsImV4cCI6MTc2NzI2OTk0N30.HixLpgkE-B6G_C0ddLpaU_bVYQqU8H-VrLpSAGEKcS0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"job_title\":\"full stack developer\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{jobTrackerURL}}/api/applications/update/1",
+							"host": [
+								"{{jobTrackerURL}}"
+							],
+							"path": [
+								"api",
+								"applications",
+								"update",
+								"1"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete application",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJvbWFybGFoYW10ZXN0MkBnbWFpbC5jb20iLCJpYXQiOjE3NjcyNjYzNDcsImV4cCI6MTc2NzI2OTk0N30.HixLpgkE-B6G_C0ddLpaU_bVYQqU8H-VrLpSAGEKcS0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{jobTrackerURL}}/api/applications/1",
+							"host": [
+								"{{jobTrackerURL}}"
+							],
+							"path": [
+								"api",
+								"applications",
+								"1"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "jobTrackerURL",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "jobTrackerURL",
+			"value": "",
+			"type": "default"
+		}
+	]
+}
