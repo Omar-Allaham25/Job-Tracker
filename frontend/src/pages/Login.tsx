@@ -1,33 +1,41 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-// import { loginUser } from "../api/jobsApi";
+import axios from "axios";
 
 export default function Login() {
   const navigate = useNavigate();
-
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
+  const [formData, setFormData] = useState({ email: "", password: "" });
+  const [error, setError] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError("");
 
-    // try {
-    //   await loginUser(formData);
-    //   navigate("/Dashboard");
-    // } catch (error) { console.error(error) }
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/auth/login",
+        formData,
+      );
 
-    if (formData.email && formData.password) {
-      navigate("/Dashboard");
+      const { token, user } = response.data;
+
+      localStorage.setItem("token", token);
+      localStorage.setItem("user", JSON.stringify(user));
+
+      navigate("/dashboard");
+    } catch (err: unknown) {
+      if (axios.isAxiosError(err)) {
+        setError(
+          err.response?.data?.message ||
+            "There is something wrong please try again",
+        );
+      } else {
+        setError("Server error");
+      }
     }
   };
 
@@ -37,10 +45,14 @@ export default function Login() {
         <h2>Job Tracker</h2>
         <p>Track your job applications</p>
 
+        {error && (
+          <div style={{ color: "red", marginBottom: "10px" }}>{error}</div>
+        )}
+
         <label htmlFor="email">Email</label>
         <input
           id="email"
-          name="email" 
+          name="email"
           type="email"
           placeholder="Your.email@example.com"
           value={formData.email}
@@ -60,11 +72,10 @@ export default function Login() {
         />
 
         <button type="submit">Login</button>
-
         <p>Don't have an account?</p>
       </form>
 
-      <button type="button" onClick={() => navigate("/Register")}>
+      <button type="button" onClick={() => navigate("/register")}>
         Register here
       </button>
     </div>
