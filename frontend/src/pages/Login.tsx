@@ -40,7 +40,7 @@ export default function Login() {
   };
 
   return (
-    <div className="login-wrapper">
+    <div className="login-container">
       <form onSubmit={handleSubmit}>
         <h2>Job Tracker</h2>
         <p>Track your job applications</p>
