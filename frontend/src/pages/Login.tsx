@@ -40,7 +40,7 @@ export default function Login() {
         <label htmlFor="email">Email</label>
         <input
           id="email"
-          name="email" // يجب أن يطابق الاسم في الـ State
+          name="email" 
           type="email"
           placeholder="Your.email@example.com"
           value={formData.email}
