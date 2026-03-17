@@ -17,7 +17,9 @@ export default function Login() {
     setError("");
 
     try {
-      const response = await loginUser(formData);
+      const response = await loginUser(
+        formData
+      );
 
       const { token, user } = response.data;
 
