@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { loginUser } from "../api/jobsApi";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -16,10 +17,7 @@ export default function Login() {
     setError("");
 
     try {
-      const response = await axios.post(
-        "http://localhost:5000/api/auth/login",
-        formData,
-      );
+      const response = await loginUser(formData);
 
       const { token, user } = response.data;
 

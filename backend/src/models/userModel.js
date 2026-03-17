@@ -3,8 +3,11 @@ class User {
   static async create(name, email, password) {
     const sql = "INSERT INTO users (name,email,password) VALUES (?,?,?)";
     const [result] = await db.execute(sql, [name, email, password]);
-    return result;
-  }
+    return {
+      id: result.insertId,
+      name,
+      email,
+    };  }
   static async findByEmail(email) {
     const sql = "SELECT * FROM users WHERE email = ?";
     const [rows] = await db.execute(sql, [email]);

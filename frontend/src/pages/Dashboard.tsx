@@ -1,12 +1,17 @@
+import { useNavigate } from "react-router-dom";
+
 export default function Dashboard() {
+  const navigate=useNavigate();
   return (
-  <div className="bg-gray-50 font-sans min-h-screen p-8 " >
-  <header className="flex justify-between flex-row bg-white-50 ">
-    <h2 className="font-bold">JobTracker</h2>
-    <button className="border-blue border-10 ">Logout</button>
+ <div>
+  <header>
+    <h2>Job Tracker</h2>
+    <button onClick={()=>{
+      navigate("/login");
+    }}>Login</button>
   </header>
   <div>
-   
+
   </div>
   </div>);
 }
