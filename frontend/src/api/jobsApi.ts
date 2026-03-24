@@ -6,9 +6,8 @@ const API = axios.create({
 
 export const loginUser = (credentials: { email: string; password: string }) =>
   API.post("/auth/login", credentials);
-export const regidterUser=(credential:{name:string,email:string,password:string,confirmPassword:string})=>{
+export const registerUser=(credential:{name:string,email:string,password:string,confirmPassword:string})=>
   API.post("/auth/register",credential);
-}
 API.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("token");
@@ -22,3 +21,5 @@ API.interceptors.request.use(
   }
 );
 export const getMyApplications=(()=>API.get("/applications"));
+export const deleteApplication=((id:number)=>API.delete(`/applications/update:${id}`));
+export const updateApplication=((id:number)=>API.delete(`/applications:${id}`));

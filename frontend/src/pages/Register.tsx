@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { registerUser } from "../api/jobsApi";
 
 export default function Register() {
   const [formData, setFormData] = useState({
@@ -18,13 +19,10 @@ const handleSubmit= async (e:React.FormEvent)=>{
   e.preventDefault();
   setError("");
  try{
-  const response=await axios.post("http://localhost:5000/api/auth/register",formData)
-  if(response.data.status!=="succes"){
-    throw new Error(response.data.message);
-    
-  }
-  localStorage.setItem("token",response.data.token);
-  localStorage.setItem("user",JSON.stringify(response.data.user));
+  const response= await registerUser(formData);
+    const {token,user}=response.data;
+  localStorage.setItem("token",token);
+  localStorage.setItem("user",JSON.stringify(user));
   navigate("/dashboard");
 }catch(err){
   if (axios.isAxiosError(err)) {
