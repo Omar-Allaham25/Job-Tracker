@@ -53,8 +53,22 @@ export default function Dashboard() {
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!editedJob) return;
-    await updateApplication(editedJob.job_id);  
-    setIsOpen(false);
+    try{
+      await updateApplication(editedJob.job_id,{
+        job_title:editedJob.job_title,
+        status:editedJob.status,
+        notes:editedJob.notes,
+  
+      }); 
+  
+      setJobs(jobs.map(job => 
+        job.job_id === editedJob.job_id ? editedJob : job
+      ));
+  
+      setIsOpen(false);
+    }catch(err:unknown){
+      setError("Failed to update application. Try again.")
+    }
   }
 
   const handleLogout = () => {

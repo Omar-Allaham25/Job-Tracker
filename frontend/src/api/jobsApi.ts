@@ -1,5 +1,10 @@
 import axios from "axios";
 
+type updatedData={
+  job_title:string;
+  status:string;
+  notes?:string;
+}
 const API = axios.create({
   baseURL: import.meta.env.VITE_API_URL || "http://localhost:5000/api",
 });
@@ -21,5 +26,5 @@ API.interceptors.request.use(
   }
 );
 export const getMyApplications=(()=>API.get("/applications"));
-export const deleteApplication=((id:number)=>API.delete(`/applications/update:${id}`));
-export const updateApplication=((id:number)=>API.delete(`/applications:${id}`));
+export const deleteApplication=((id:number)=>API.delete(`/applications/update/${id}`));
+export const updateApplication=((id:number,updatedData:updatedData)=>API.patch(`/applications/${id}`,updatedData));
