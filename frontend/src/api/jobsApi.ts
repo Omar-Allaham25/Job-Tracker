@@ -1,6 +1,12 @@
 import axios from "axios";
 
-type updatedData={
+type UpdatedData={
+  job_title:string;
+  status:string;
+  notes?:string;
+}
+
+type CreateData={
   job_title:string;
   status:string;
   notes?:string;
@@ -27,4 +33,5 @@ API.interceptors.request.use(
 );
 export const getMyApplications=(()=>API.get("/applications"));
 export const deleteApplication=((id:number)=>API.delete(`/applications/update/${id}`));
-export const updateApplication=((id:number,updatedData:updatedData)=>API.patch(`/applications/${id}`,updatedData));
+export const updateApplication=((id:number,updatedData:UpdatedData)=>API.patch(`/applications/${id}`,updatedData));
+export const addApplication=((creatdata:CreateData)=>API.post(`/create`,creatdata));

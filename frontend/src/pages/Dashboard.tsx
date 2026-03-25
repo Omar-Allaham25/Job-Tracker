@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import { deleteApplication, getMyApplications, updateApplication } from "../api/jobsApi";
 import React, { useEffect, useState } from "react";
 
@@ -20,10 +20,12 @@ export default function Dashboard() {
   const [jobs, setJobs] = useState<Job[]>([]);
   const [loading, setLoading] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
-  
+  const [searchInput,setSearchInput]=useState<string>("");
   const [editedJob, setEditedJob] = useState<Job | null>(null);
-
-  useEffect(() => { fetchJobs() }, [])
+// const [isAdd,setIsAdd]=useState<boolean>(false);
+// const [newJob,setNewJob]=useState();
+  useEffect(() => { fetchJobs() ;
+  }, [])
 
   const fetchJobs = async () => {
     try {
@@ -34,6 +36,17 @@ export default function Dashboard() {
     } finally {
       setLoading(false);
     }
+  }
+
+  const numstatus: Record<status, number> = {
+    Applied: jobs.filter(j => j.status === "Applied").length,
+    Interview: jobs.filter(j => j.status === "Interview").length,
+    Offer: jobs.filter(j => j.status === "Offer").length,
+    Rejected: jobs.filter(j => j.status === "Rejected").length,
+  };
+
+  const handleAdd=()=>{
+    // setIsAdd(true);
   }
 
   const handleEdit = (job: Job) => {
@@ -86,7 +99,21 @@ export default function Dashboard() {
         <h2>Job Tracker</h2>
         <button onClick={handleLogout}>Logout</button>
       </header>
-      
+      <div>
+        {statusOptions.map((item)=>{return(
+          <div>
+          <p>{item}</p>
+          <p>{numstatus[item as status]}</p>
+          </div>
+        )})}
+      </div>
+      <div>
+        <input placeholder="Search by company or postion" type="text" value={searchInput} onChange={(e:React.ChangeEvent<HTMLInputElement>)=>{
+          setSearchInput(e.target.value);
+        }}/>
+        <button onClick={()=>handleAdd()}>Add Job</button>
+
+      </div>
       <div>
         {jobs.map((job: Job) => (
           <div key={job.job_id}>
