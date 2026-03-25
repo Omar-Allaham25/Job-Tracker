@@ -1,14 +1,18 @@
 const { application } = require("express");
 const Application = require("../models/applicationModel");
+const Company = require("../models/companyModel");
 
 exports.createApplication = async (req, res) => {
-  const { job_title, status, application_date, notes, company_id } = req.body;
-  if (!job_title || !company_id) {
+  const { job_title, status, application_date,companyLocation,notes, companyName } = req.body;
+  if (!job_title || !company_name) {
     return res.status(400).json({
       status: "failed",
       message: "Job title and Company ID are required",
     });
   }
+  const userId=req.params.id;
+  const company_id=await Company.create(companyName,companyLocation,userId);
+
   const applicationdata = {
     job_title,
     status,
