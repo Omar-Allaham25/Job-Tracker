@@ -10,51 +10,79 @@ export default function Register() {
     password: "",
     confirmPassword: "",
   });
-  const [error,setError]=useState("");
-  const navigate=useNavigate();
-const handlechange=(e:React.ChangeEvent<HTMLInputElement>)=>{
-  setFormData({...formData,[e.target.name]:e.target.value});
-}
-const handleSubmit= async (e:React.FormEvent)=>{
-  e.preventDefault();
-  setError("");
- try{
-  const response= await registerUser(formData);
-    const {token,user}=response.data;
-  localStorage.setItem("token",token);
-  localStorage.setItem("user",JSON.stringify(user));
-  navigate("/dashboard");
-}catch(err){
-  if (axios.isAxiosError(err)) {
-    setError(
-      err.response?.data?.message ||
-        "There is something wrong please try again",
-    );
-  } else {
-    setError("Server error");
-  }
-}
-}
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+  const handlechange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError("");
+    try {
+      const response = await registerUser(formData);
+      const { token, user } = response.data;
+      localStorage.setItem("token", token);
+      localStorage.setItem("user", JSON.stringify(user));
+      navigate("/dashboard");
+    } catch (err) {
+      if (axios.isAxiosError(err)) {
+        setError(
+          err.response?.data?.message ||
+            "There is something wrong please try again",
+        );
+      } else {
+        setError("Server error");
+      }
+    }
+  };
   return (
     <div className="register-container">
       <form onSubmit={handleSubmit}>
         <h2>Create Account</h2>
         <p>Start tracking your job applications </p>
-        {error &&<div className="font_red">{error}</div>}
+        {error && <div className="font_red">{error}</div>}
         <label htmlFor="name">Name</label>
-        <input type="text" id="name" placeholder="Your name "onChange={handlechange} required />
+        <input
+          type="text"
+          id="name"
+          placeholder="Your name "
+          onChange={handlechange}
+          required
+        />
         <label htmlFor="email">Email</label>
-        <input type="email" id="email" placeholder="your.email@example.com"onChange={handlechange} required />
+        <input
+          type="email"
+          id="email"
+          placeholder="your.email@example.com"
+          onChange={handlechange}
+          required
+        />
         <label htmlFor="password">Password</label>
-        <input id="password" type="password" placeholder="••••••••"onChange={handlechange} required />
+        <input
+          id="password"
+          type="password"
+          placeholder="••••••••"
+          onChange={handlechange}
+          required
+        />
         <label htmlFor="confirmPassword">Confirm Password </label>
-        <input id="confirmPassword" type="password" placeholder="••••••••" onChange={handlechange}required />
+        <input
+          id="confirmPassword"
+          type="password"
+          placeholder="••••••••"
+          onChange={handlechange}
+          required
+        />
         <button type="submit">Register</button>
         <p>Already have an account?</p>
       </form>
-      <button onClick={()=>{
-        navigate("/login");
-      }}>Login here</button>
+      <button
+        onClick={() => {
+          navigate("/login");
+        }}
+      >
+        Login here
+      </button>
     </div>
   );
 }
