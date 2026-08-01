@@ -1,143 +1,283 @@
-# Job Application Tracker API
+# 💼 Job Tracker
 
-A robust RESTful API built with **Node.js**, **Express**, and **MySQL** that helps users track job applications, manage companies, and monitor application statuses efficiently.
+A modern **full-stack web application** that helps users organize and manage their job search in one place.
 
-This project was built as a **hands-on back-end learning project**, focusing on real-world API design, authentication, and clean architecture.
+Job Tracker allows users to securely manage companies, track job applications, monitor application progress, and quickly search through their opportunities using a clean and responsive interface powered by a RESTful API.
 
----
-
-## Features
-
-- **Authentication**
-
-  - Secure user registration & login
-  - JWT-based authentication
-  - Password hashing using bcrypt
-
-- **Companies Management**
-
-  - Add companies
-  - Retrieve all companies
-
-- **Job Applications Tracking**
-
-  - Create job applications
-  - Retrieve all applications
-  - Update application status
-  - Delete applications
-
-- **Search & Filters**
-- Filter applications by status (Interview, Offer, Rejected, etc.)
-- Search by company name or job title
-
-- **Security & Validation**
-- Protected routes using JWT middleware
-- Request validation using express-validator
-
-- **Error Handling**
-- Centralized error handling
-- Consistent API responses
+This project was built to strengthen my full-stack development skills by combining a modern React frontend with a secure and scalable Node.js backend.
 
 ---
 
-## Tech Stack
+# ✨ Features
 
-- **Runtime:** Node.js
-- **Framework:** Express.js (v5)
-- **Database:** MySQL
-- **Query Tool:** MySQL2
-- **Authentication:** JWT (jsonwebtoken)
-- **Security:** bcryptjs
-- **Validation:** express-validator
+## 🔐 Authentication
+
+* User registration and login
+* JWT-based authentication
+* Secure password hashing with bcrypt
+* Protected routes
 
 ---
 
-## Project Structure
+## 💼 Job Applications
 
-````text
-src/
- ├─ controllers/
- ├─ routes/
- ├─ models/
- ├─ middleware/
- ├─ config/
- └─ app.js
-````
+* Create job applications
+* View all applications
+* Update application details
+* Change application status
+* Delete applications
+
 ---
 
-## Getting Started
+## 🏢 Company Management
 
-1. **Clone the repository**: git clone https://github.com/Omar-Allaham25/Job-Tracker.git
-2. **Install dependencies**:
-   ```bash
-   npm install
-   ```
-3. **Environment Variables**:
+* Add companies
+* View all companies
+* Associate applications with companies
+
+---
+
+## 🔍 Search & Filtering
+
+* Search by:
+
+  * Company name
+  * Job title
+
+* Filter by application status:
+
+  * Applied
+  * Interview
+  * Offer
+  * Rejected
+
+---
+
+## 🎨 User Interface
+
+* Responsive design
+* Modern dashboard
+* Clean and intuitive user experience
+* Client-side form validation
+* Protected pages for authenticated users
+
+---
+
+## 🛡 Security & Validation
+
+* JWT authentication
+* Password hashing with bcrypt
+* Request validation using Joi
+* Centralized error handling
+* Consistent API responses
+
+---
+
+# 🛠 Tech Stack
+
+## Frontend
+
+* React
+* TypeScript
+* Vite
+* Tailwind CSS
+* React Router
+* Axios
+
+## Backend
+
+* Node.js
+* Express.js
+* JWT (jsonwebtoken)
+* bcryptjs
+* Joi
+
+## Database
+
+* MySQL
+* MySQL2
+
+---
+
+# 📁 Project Structure
+
+```text
+Job-Tracker/
+├── client/
+│   ├── src/
+│   ├── public/
+│   └── ...
+│
+├── server/
+│   ├── src/
+│   │   ├── config/
+│   │   ├── controllers/
+│   │   ├── middleware/
+│   │   ├── models/
+│   │   ├── routes/
+│   │   └── app.js
+│   └── ...
+│
+└── README.md
+```
+
+---
+
+# 🚀 Getting Started
+
+## Clone the repository
+
+```bash
+git clone https://github.com/Omar-Allaham25/Job-Tracker.git
+
+cd Job-Tracker
+```
+
+---
+
+## Install dependencies
+
+### Backend
+
+```bash
+cd server
+npm install
+```
+
+### Frontend
+
+```bash
+cd client
+npm install
+```
+
+---
+
+## Environment Variables
+
+Create a `.env` file inside the **server** folder.
+
+```env
 PORT=5000
+
 DB_HOST=localhost
 DB_USER=root
 DB_PASSWORD=your_password
 DB_NAME=job_tracker
+
 JWT_SECRET=your_jwt_secret
-4. **Run the server**:npm run dev
+```
 
-**The API will be running at**:
+---
+
+## Run the Application
+
+### Start the backend
+
+```bash
+cd server
+npm run dev
+```
+
+### Start the frontend
+
+```bash
+cd client
+npm run dev
+```
+
+Frontend:
+
+```text
+http://localhost:5173
+```
+
+Backend:
+
+```text
 http://localhost:5000
+```
 
 ---
 
-## API Testing (Postman)
+# 📡 REST API
 
-This project includes a **Postman Collection** for testing all available API endpoints.
+The frontend communicates with a RESTful API built using Express.js.
 
-🔗 **Postman Collection:**
-[Download Postman Collection](jobTracker-API.postman_collection.json)
+### Authentication
 
----
-
-## 🔗 Available Endpoints
-
-###  Users
-- Register
-- Login
+* POST `/register`
+* POST `/login`
 
 ### Companies
-- Add company
-- Get all companies
+
+* GET `/companies`
+* POST `/companies`
 
 ### Applications
-- Create application
-- Get applications
-- Update application
-- Delete application
 
----
+* GET `/applications`
+* POST `/applications`
+* PUT `/applications/:id`
+* DELETE `/applications/:id`
 
-### Authorization Header Example
+Protected endpoints require the following header:
 
 ```http
-Authorization: Bearer {{token}}
+Authorization: Bearer <your_token>
 ```
----
-
-##  Learning Outcomes
-
-Through this project, I gained hands-on experience with:
-
-- Building RESTful APIs from scratch
-- Implementing authentication & authorization
-- Designing relational databases
-- Structuring scalable back-end applications
-- Handling validation and centralized error management
 
 ---
 
-## Author
+# 📮 API Testing
+
+A Postman collection is included for testing all available API endpoints.
+
+```text
+jobTracker-API.postman_collection.json
+```
+
+---
+
+# 🎯 Learning Outcomes
+
+Building this project helped me gain practical experience with:
+
+* Full-stack application development
+* Building RESTful APIs
+* Authentication and authorization using JWT
+* Password security with bcrypt
+* React application development
+* State management and API integration
+* Designing relational databases
+* CRUD operations
+* Form validation
+* Error handling
+* Layered backend architecture
+* Building responsive user interfaces
+
+---
+
+# 🚀 Future Improvements
+
+* Pagination
+* Refresh token authentication
+* Email verification
+* Password reset
+* User profile management
+* Dashboard analytics
+* Docker support
+* Unit and integration testing
+* CI/CD pipeline
+* API documentation with Swagger
+
+---
+
+# 👨‍💻 Author
 
 **Omar Allahham**
-Backend Developer | Software Engineering Student
 
-🔗 GitHub: https://github.com/Omar-Allaham25
+Software Engineering Graduate | Full-Stack Developer
 
-
-````
+* GitHub: https://github.com/Omar-Allaham25
+* LinkedIn: *(Add your LinkedIn profile here)*
